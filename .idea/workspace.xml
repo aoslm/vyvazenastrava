@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5d3aea2c-9d88-40ed-9594-f4477ab8d304" name="Default" comment="" />
+    <list default="true" id="5d3aea2c-9d88-40ed-9594-f4477ab8d304" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="Vyziva.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Ruby Console" changelist="5d3aea2c-9d88-40ed-9594-f4477ab8d304" time="1368616913420" ignored="false" />
     <file path="/foods_controller.rb" changelist="5d3aea2c-9d88-40ed-9594-f4477ab8d304" time="1368534081257" ignored="false" />
-    <file path="/Dummy.txt" changelist="5d3aea2c-9d88-40ed-9594-f4477ab8d304" time="1368527932945" ignored="false" />
+    <file path="/Dummy.txt" changelist="5d3aea2c-9d88-40ed-9594-f4477ab8d304" time="1368619875656" ignored="false" />
     <file path="/20130421230458_add_amount_to_menus_food.rb" changelist="5d3aea2c-9d88-40ed-9594-f4477ab8d304" time="1367873074839" ignored="false" />
     <file path="/show.html.erb" changelist="5d3aea2c-9d88-40ed-9594-f4477ab8d304" time="1368516922368" ignored="false" />
     <file path="/menus_food.rb" changelist="5d3aea2c-9d88-40ed-9594-f4477ab8d304" time="1367914179465" ignored="false" />
@@ -128,6 +131,14 @@
     <option name="VCS_SHOW_CONFIRMATION" value="true" />
     <option name="ENVIRONMENT" value="development" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
@@ -163,7 +174,7 @@
     <option name="width" value="1374" />
     <option name="height" value="732" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -204,12 +215,16 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$USER_HOME$/Obrázky" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="RakeTaksPopup.undocumentedIncluded" value="false" />
     <property name="RailsGeneratorsPopup.hiddenIncluded" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
