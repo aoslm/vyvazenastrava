@@ -1,0 +1,30 @@
+<% provide(:title, 'Úprava receptu') %>
+<ul class="breadcrumb">
+  <li><%= link_to 'Domov', root_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Profil', profile_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Recepty',myRecipes_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Detaily receptu',food_recipe_path(@recipe.food,@recipe) %> <span class="divider">/</span></li>
+  <li class="active">Úprava receptu</li>
+</ul>
+
+<div class="page-header">
+  <h1>Zmena údajov o recepte</h1>
+</div>
+
+<div class="row">
+  <div class="center">
+    <div class="offset4
+       span4">
+      <div class="form-actions">
+        <%= render 'form' %>
+        <%= link_to 'Späť', food_recipes_path, class: "btn center btn-primary btn-large" %>
+        <%= link_to 'Vymaž', food_recipe_path, method: :delete, class: "btn center btn-primary btn-large
+        btn-danger"
+        %>  <div>
+
+      </div>
+        <br/>
+      </div>
+    </div>
+  </div>
+

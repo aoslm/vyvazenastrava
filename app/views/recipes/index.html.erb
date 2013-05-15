@@ -1,0 +1,33 @@
+<% provide(:title, "Recepty") %>
+<ul class="breadcrumb">
+  <li><%= link_to 'Domov', root_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Všetky jedlá', foods_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Jedlo', details_food_path(@food) %> <span class="divider">/</span></li>
+  <li class="active">Recepty</li>
+</ul>
+<div class="page-header"><h1>Recepty</h1></div>
+<h2><%= @food.slovakname %></h2>
+<p>
+
+<div class="row">
+  <%= render 'navigation/left' %>
+  <table class="table span4">
+    <tr>
+      <th>Názov</th>
+      <th>Hodnotenie</th>
+      <th>Pridal</th>
+    </tr>
+    <% @food.recipes.each do |recept| %>
+        <tr>
+          <td><%= link_to recept.name, [@food, recept] %></td>
+          <td><%= recept.rank %></td>
+          <td><%= recept.users.first.name %></td>
+        </tr>
+    <% end %>
+  </table>
+
+
+  <%= render 'navigation/right' %>
+</div>
+
+

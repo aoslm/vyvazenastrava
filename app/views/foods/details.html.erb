@@ -1,0 +1,74 @@
+<% provide(:title, 'Detaily jedla') %>
+
+<ul class="breadcrumb">
+  <li><%= link_to 'Domov', root_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Profil', profile_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Jedlá',foods_path %> <span class="divider">/</span></li>
+  <li class="active">Detaily jedla</li>
+</ul>
+
+<div class="page-header"><h1>Detaily jedla</h1></div>
+
+<div class="row">
+  <h2><%= @food.slovakname %>
+    <small><%= if (!@food.englishname.nil?) then
+                 "(" + @food.englishname + ")"
+               end %></small>
+  </h2>
+  <div class="span3">
+
+    <table style="text-align: left; margin-top: 36px;">
+      <tr>
+        <th>Kategória:</th>
+        <th><%= @food.category.description %></th>
+      </tr>
+      <tr>
+        <th>Typ:</th>
+        <th>
+
+          <%= @food.types.find_each do |typ| %>
+              <%= typ.description + "," %>
+              <br/>
+          <% end %></th>
+      </tr>
+
+
+      <tr>
+        <th>Pridal používateľ:</th>
+        <td>  <%= link_to @food.user.username, user_path(@food.user_id) %> </td>
+      </tr>
+    </table>
+  </div>
+  <div class="span9">
+    <ul class="nav nav-tabs">
+      <li><%= link_to "Späť", foods_path %></li>
+      <li><%= link_to "Pridaj recept", new_food_recipe_path(@food) %></li>
+
+      <li><%= link_to "Uprav", edit_food_path(@food) %></li>
+      <li><%= link_to 'Odstráň', destroy_food_path(@food), method: :delete,
+                      confirm: "Jedlo #{@food.slovakname}
+                 bude vymazané. Chcete pokračovať?" %></li>
+    </ul>
+    <table class="table" style="text-align: left;">
+      <tr>
+        <th>Názov prvku</th>
+        <th>Množstvo</th>
+        <th>Jednotka</th>
+        <th>Detaily prvku</th>
+      </tr>
+
+      <% if !@food.compositions.empty? %>
+          <% @elements.each do |element| %>
+              <tr>
+                <!--@type[@type.find_index(element.elements_type)].name-->
+                <td><%= element.elements_type.name %></td>
+                <td><%= element.amount %></td>
+                <td><%= element.elements_type.unit %></td>
+                <td><%= element.elements_type.description %></td>
+              </tr>
+          <% end %>
+
+      <% end %>
+    </table>
+  </div>
+</div>

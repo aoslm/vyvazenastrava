@@ -1,0 +1,33 @@
+# == Schema Information
+#
+# Table name: recipes
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)      not null
+#  price      :float
+#  rank       :integer
+#  time       :time
+#  manual     :text
+#  food_id    :integer          not null
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  price: 1.5
+  rank: 1
+  time: 2013-03-26 19:39:39
+  manual: MyText
+  food: 
+
+two:
+  name: MyString
+  price: 1.5
+  rank: 1
+  time: 2013-03-26 19:39:39
+  manual: MyText
+  food: 

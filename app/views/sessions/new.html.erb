@@ -1,0 +1,30 @@
+<% provide(:title, "Prihlásenie") %>
+<div class="page-header"><h1>Prihlásenie</h1></div
+
+<div class="row">
+  <div class="center">
+    <div class="offset4
+       span4">
+      <div class="form-actions">
+
+        <%= form_for(:session, url: sessions_path) do |f| %>
+            <table>
+              <tr>
+                <th><%= f.label :username %></th>
+                <td><%= f.text_field :username %></td>
+              </tr>
+              <tr>
+                <th>
+                  <%= f.label :password, "Heslo" %></th>
+                <td>
+                  <%= f.password_field :password %></td>
+              </tr>
+            </table>
+            </br>
+            <%= f.submit "Prihlás ma", class: "btn btn-large btn-primary" %>
+        <% end %>   <p>Nový používateľ? <%= link_to "Zaregistruj ma!", signup_path %></p>
+
+      </div>
+    </div>
+  </div>
+</div>

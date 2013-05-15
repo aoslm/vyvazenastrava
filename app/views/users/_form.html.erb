@@ -1,0 +1,61 @@
+<%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2>Vyskytlo sa <%= @user.errors.count %> chýb, ktoré znemožnili uložiť používateľa:</h2>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <table>
+      <tr>
+        <th> <%= f.label "Meno" %> </th>
+        <td><%= f.text_field :name %>  </td>
+      </tr>
+      <tr>
+        <th> <%= f.label "Priezvisko" %>  </th>
+        <td><%= f.text_field :surname %> </td>
+      </tr>
+      <tr>
+        <th> <%= f.label "Pohlavie (*)" %> </th>
+        <td><%= f.collection_select :gender, pohlavie = {"man" => "muž", "woman" => "žena", "child" => "dieťa"},
+                                    :first,
+                                    :second,
+                                    {:prompt => "Vyber pohlavie"} %></td>
+      </tr>
+      <tr>
+        <td> <%= f.label "Používateľské meno (*)" %> </td>
+        <td><%= f.text_field :username %> </td>
+      </tr>
+      <tr>
+        <th> <%= f.label "Heslo (*)" %> </th>
+        <td><%= f.password_field :password %> </td>
+      </tr>
+      <tr>
+        <th>  <%= f.label "Overenie hesla  (*)" %>  </th>
+        <td><%= f.password_field :password_confirmation %> </td>
+      </tr>
+
+      <tr>
+        <th>   <%= f.label "Adresa" %>  </th>
+        <td> <%= f.text_field :address %>  </td>
+      </tr>
+      <tr>
+        <th>  <%= f.label "Dátum narodenia (*)" %>  </th>
+        <td style="width:20px;"><%= f.date_select :dateOfBirth, :start_year => 1920, :end_year => 2010,
+                                                  :default => {:year => 1990, :day => 1, :month => 1} %> </td>
+      </tr>
+      <tr>
+        <th> <%= f.label "Email (*)" %> </th>
+        <td><%= f.email_field :email %>  </td>
+      </tr>
+    </table>
+
+    <p>* Povinné polia</p>
+
+    <div class="submit">
+      <%= f.submit "Potvrď", class: "btn btn-success btn-large" %>
+    </div>
+<% end %>

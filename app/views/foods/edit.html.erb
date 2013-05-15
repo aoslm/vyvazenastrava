@@ -1,0 +1,29 @@
+<% provide(:title, 'Úprava jedla') %>
+<ul class="breadcrumb">
+  <li><%= link_to 'Domov', root_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Profil', profile_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Jedlá', foods_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Detaily Jedla', details_food_path(@food) %> <span class="divider">/</span></li>
+  <li class="active">Úprava jedla</li>
+</ul>
+
+<div class="page-header">
+  <h1>Zmena údajov o jedle</h1>
+</div>
+
+<div class="row">
+  <div class="center">
+    <div class="offset4
+       span4">
+      <div class="form-actions">
+        <%= render 'form' %>
+        <%= link_to 'Späť', foods_path, class: "btn center btn-primary " %>
+        <%= link_to 'Vymaž', destroy_food_path, method: :delete, class: "btn center btn-danger"%>
+        <div>
+
+        </div>
+        <br/>
+      </div>
+    </div>
+  </div>
+

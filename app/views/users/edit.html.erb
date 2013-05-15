@@ -1,0 +1,20 @@
+<% provide(:title, 'Zmena údajov') %>
+<ul class="breadcrumb">
+  <li><%= link_to 'Domov', root_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Profil', profile_path %> <span class="divider">/</span></li>
+  <li class="active">Zmena údajov</li>
+</ul>
+<div class="page-header"><h1>Zmena údajov</h1></div>
+<div class="row">
+  <div class="center">
+    <div class="offset4
+       span4">
+      <div class="form-actions">
+        <%= render 'form' %>
+        <%= link_to 'Späť', profile_path, class: "btn center btn-primary" %>
+        <%= link_to 'Vymaž', @user, method: :delete, class: "btn center btn-danger" %>  </div>
+    </div>
+    <br/>
+  </div>
+</div>
+

@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: foods
+#
+#  id          :integer          not null, primary key
+#  slovakname  :string(255)      not null
+#  englishname :string(255)
+#  description :text
+#  user_id     :integer          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  category_id :integer          not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  slovakName: MyString
+  englishName: MyString
+  description: MyText
+  user: 
+
+two:
+  slovakName: MyString
+  englishName: MyString
+  description: MyText
+  user: 

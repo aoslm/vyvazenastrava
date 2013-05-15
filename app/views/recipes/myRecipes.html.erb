@@ -1,0 +1,41 @@
+<% provide(:title, "Moje recepty") %>
+
+<ul class="breadcrumb">
+  <li><%= link_to 'Domov', root_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Profil', profile_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Všetky Jedlá', foods_path %> <span class="divider">/</span></li>
+  <li class="active">Moje recepty</li>
+</ul>
+
+<div class="row">
+  <div class="page-header"><h1>Recepty</h1>
+
+    <h2>Recepty pridané používateľom <%= current_user.username %></h2></div>
+
+  <%= render 'navigation/left' %>
+
+  <div class="span4">
+    <table class="table">
+      <tr>
+        <th>Názov</th>
+        <th></th>
+        <th></th>
+        <th>Hodnotenie</th>
+      </tr>
+      <% current_user.recipes.each do |recept| %>
+          <tr>
+            <td>
+              <h5><%= link_to recept.name, food_recipe_path(recept.food, recept) %> </h5>
+            </td>
+            <td><%= link_to "Uprav", edit_food_recipe_path(recept.food, recept) %></td>
+            <td><%= link_to 'Odstráň', food_recipe_path(recept.food, recept), method: :delete,
+                            confirm: "Recept #{recept.name}
+                 bude vymazaný. Chcete pokračovať?" %></td>
+            <td><%= recept.rank %></td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <%= render 'navigation/right' %>
+</div>

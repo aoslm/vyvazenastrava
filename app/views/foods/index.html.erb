@@ -1,0 +1,177 @@
+<script type="text/javascript">
+    $(function () {
+        <% ElementTypeGroup.all.each do |group|%>
+        $('#<%= group.name %>').hide();
+        $('#c<%= group.name %>').hide();
+
+
+        $('#c<%= group.name %>').click(function () {
+
+            $('#<%= group.name %>').hide();
+            $('#c<%= group.name %>').hide();
+            $('#b<%= group.name %>').show();
+
+        });
+
+        $('#b<%= group.name %>').click(function () {
+
+            $('#<%= group.name %>').show();
+            $('#c<%= group.name %>').show();
+            $('#b<%= group.name %>').hide();
+
+        });
+        <% end %>
+    });
+</script>
+<% provide(:title, "Jedlá") %>
+
+<ul class="breadcrumb">
+  <li><%= link_to 'Domov', root_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Profil', profile_path %> <span class="divider">/</span></li>
+
+  <li class="active">Jedlá</li>
+</ul>
+
+<div data-spy="scroll" data-target=".nav" id="foods">
+  <div class="page-header"><h1>Jedlá</h1></div>
+
+  <%= form_tag({:action => 'search'}, :remote => true, class: "center search",
+               :'data-update-target' => 'update-container') do %>
+
+      <%= autocomplete_field_tag 'search', '', autocomplete_food_slovakname_foods_path,
+                                 class: "search-query span2", name: "search",
+                                 :size => 20,
+                                 style: "margin: 2px 0px;width: 138px;",
+                                 :id_element => '#some_element', placeholder: "Zadaj názov jedla",
+                                 :data => { :no_matches_label => 'Nenájdený
+                                 žiadny výsledok' }  %>
+
+      <%= submit_tag "Vyhľadaj", 'data-disable-with' => "Prosím počkajte",
+                     class: "btn btn-primary btn-small",
+                     style: "margin: 2px 0px;min-width:200px;" %>
+  <% end %>
+
+  <div class="row">
+    <div class="span3" style="margin-top: 37px">
+      <%= form_tag({:action => 'preview'}, :remote => true, class: "categoryselect",
+                   :'data-update-target' => 'update-container') do %>
+          <div class="form-actions">
+
+            <% if @categories != nil then
+                 @categories.each do |category| %>
+                    <button type="button" class="btn btn-success btn-primary" style="margin:2px 0px;min-width:
+                            230px"
+                            data-toggle="collapse"
+                            data-target="#<%= category.name %>">
+                      <%= category.description %> </button>
+
+
+                    <div id="<%= category.name %>" class="center collapse">
+                      <% category.types.each do |type| %>
+                          <% if type.foods != [] %>
+                              <%= submit_tag type.description, 'data-disable-with' => "Prosím počkajte",
+                                             class: "btn btn-primary btn-small",
+                                             style: "margin: 2px 0px;min-width:200px;",
+                                             :name => "edit[#{category.id}]" %>
+                          <% end end %></div>
+
+                <% end end %> </div>
+      <% end %>
+
+      <%= form_tag({:action => 'filter'}, :remote => true, class: "filtre",
+                   :'data-update-target' => 'update-container') do %>
+          <div class="form-actions center">
+            Zadaj minimálne množstvo
+            <% @groups.each do |group| %>
+
+                <button type="button" id="b<%= group.name %>" class="center btn btn-success btn-primary" style="margin:
+                        2px 0px;min-width:
+                        230px"
+                        data-toggle="collapse"
+                        data-target=<%= group.name %>>
+                  <%= group.description %>
+                </button>
+
+                <button type="button" id="c<%= group.name %>" class="center btn btn-success btn-primary" style="margin:
+                        2px 0px;min-width:
+                        230px"
+                        data-toggle="collapse"
+                        data-target=<%= group.name %>>
+                  <%= group.description %>
+                </button>
+
+
+                <table id=<%= group.name %> class="center">
+
+                <% group.elements_types.each do |e| %>
+                    <tr>
+                      <th><%= label e, e.name + " [" + e.unit + "]" %></th>
+                      <td><%= number_field_tag "amount", 0, name: "filter[#{e.name}]",
+                                             :size => 10,
+                                             style: "margin: 2px 0px;width: 47px;" %> </td>
+                    </tr>
+                <% end %>
+                </table>
+            <% end %>
+            <%= submit_tag "Zobraz jedlá", 'data-disable-with' => "Prosím počkajte",
+                           class: "center btn btn-primary btn-small",
+                           style: "margin: 2px 0px;min-width:230px;" %>
+
+      <% end %>
+      </div>
+
+    </div>
+    <div class="span9">
+
+
+      <ul class="nav nav-tabs">
+        <li><%= link_to "Filtruj jedlá", '#', class: "btn-large", id: "filter" %></li>
+        <li><%= link_to "Kategórie jedál", '#', class: "btn-large", id: "categoryshow" %></li>
+        <li><%= link_to "TOP jedlá", foods_path, class: "btn-large" %></li>
+        <li><%= link_to "Moje recepty", myRecipes_path, class: "btn-large" %></li>
+
+
+        <li class="dropdown">
+          <a class="dropdown-toggle btn-large"
+             data-toggle="dropdown"
+             href="#">
+            Jedálne lístky
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <% @menus.each do |menu| %>
+                <li><%= link_to menu.name, menu %></li>
+            <% end %>
+          </ul>
+        </li>
+        <li><%= link_to "Vytvor jedlo", new_food_path, class: "btn-large" %></li>
+
+
+        <li><%# link_to "Jedálne lístky", menus_path, class: "btn-large" %></li>
+
+
+      </ul>
+      <div class="form-actions">
+        <div id="update-container">
+
+          <h2>TOP 100 jedál</h2>
+
+          <table class="table">
+            <tr>
+
+              <th><i class="icon-reorder"></i><%= sortable_column " Zoraď podľa názvu", :column => "slovakname" %>
+              </th>
+              <th></th>
+              <th>Množstvo [g]</th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+            <%= render('actions') %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

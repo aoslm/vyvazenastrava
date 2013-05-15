@@ -1,0 +1,87 @@
+<script type="text/javascript">
+    $(function () {
+        $('#topsearch').bind('railsAutocomplete.select', function(event, data){
+            window.location.href = "/foods/id/"+data.item.id;
+        });
+    });
+</script>
+
+<header class="navbar navbar-fixed-top ">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "Vyváženástrava.sk", root_path, id: "logo" %>
+      <nav>
+        <ul class="nav pull-right">
+          <li><%= link_to "Domov", root_path %></li>
+          <% if signed_in? %>
+              <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Jedlá<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Zobraz všetky", foods_path %></li>
+                  <li><%= link_to "Pridaj jedlo", new_food_path %></li>
+                  <li class="divider"></li>
+                  <li><%= link_to "Prvky", elements_path %></li>
+                  <li><%= link_to "Štatistiky", statistic_path %></li>
+                </ul>
+              </li>
+              <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Recepty<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Zobraz moje", myRecipes_path %></li>
+                  <li><%= link_to "Pridaj recept", foods_path, :confirm => "Najskôr si vyber jedlo." %></li>
+                </ul>
+              </li>
+              <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Jedálny lístok<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <% current_user.menus.limit(10).each do |m| %>
+                      <li><%= link_to m.name, menu_path(m) %></li>
+                  <% end %>
+                  <li><%= link_to "TOP 100 lístkov", menus_path %></li>
+                  <li class="divider"></li>
+                  <li><%= link_to "Pridaj jedálny lístok", new_menu_path %></li>
+
+                </ul>
+              </li>
+              <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Profil <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%=link_to current_user.username, profile_path %></li>
+                  <li class="divider"></li>
+                  <li><%= link_to "Profil", profile_path %></li>
+                  <li><%= link_to "Zmena údajov", edit_path %></li>
+                  <li class="divider"></li>
+                  <li>
+                    <%= link_to "Odhlás ma", signout_path, method: "delete" %>
+                  </li>
+                </ul>
+              </li>
+          <% else %>
+              <li><%= link_to "Prihlásenie", signin_path %></li>
+          <% end %>
+          <li><%= link_to "FAQ", help_path %></li>
+
+          <form class="navbar-search pull-left">
+          <%= autocomplete_field_tag 'topsearch', '', autocomplete_food_slovakname_foods_path,
+                                     class: "search-query span2", name: "topsearch",type: "text",
+                                     :size => 20,
+                                     style: "margin: 2px 0px;width: 138px;",
+                                     :id_element => '#some_element', placeholder: "Vyhľadaj na stránke",
+                                     :data => { :no_matches_label => 'Nenájdený
+                                 žiadny výsledok' }  %>
+            <div class="icon-search"></div>
+          </form>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+

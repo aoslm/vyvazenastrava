@@ -1,0 +1,34 @@
+<% provide(:title, @recipe.name) %>
+
+<ul class="breadcrumb">
+  <li><%= link_to 'Domov', root_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Všetky jedlá', foods_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Jedlo', details_food_path(@food) %> <span class="divider">/</span></li>
+  <li><%= link_to 'Recepty', food_recipes_path(@food) %> <span class="divider">/</span></li>
+
+  <li class="active">Recept</li>
+</ul>
+<div class="row">
+  <div class="span offset1">
+    <table class="table">
+        <tr>
+          <th>Počet osôb: </th>
+          <td><%= @recipe.people %></td>
+        </tr>
+      <tr>
+        <th>Čas prípravy: </th>
+        <td><%= @recipe.time.min %> min</td>
+      </tr>
+      <tr>
+        <th>Cena: </th>
+        <td><%= @recipe.price %> €</td>
+      </tr>
+    </table>
+  </div>
+  <div class="span8 center">
+  <h1><%= @recipe.name %></h1>
+  <p><%= @recipe.manual %></p>
+
+  <%= link_to "Uprav recept", edit_food_recipe_path(@food,@recipe), class: "btn btn-primary btn-large" %>
+   </div>
+</div>

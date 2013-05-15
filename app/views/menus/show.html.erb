@@ -1,0 +1,89 @@
+<div class="page-header"><h1><%= @menu.name %></h1>
+  <h4 class="center">Vytvorené: <%= @menu.created_at.to_date %></h4>
+
+</div>
+
+
+<div class="row">
+  <%= form_tag(update_menu_path(@menu)) do %>
+
+<div class="span1">
+  <% if @menu.users.first == current_user && !@menu.foods.empty? %>
+    <%= submit_tag "Aktualizuj" , class: "btn btn-primary", style: "position: fixed" %>
+  <% end %>
+  </div>
+
+  <div class="span4" style="border-left: 1px solid #c19c6b;">
+    <h2>Jedlá</h2>
+
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Názov</th>
+        <th>Množstvo [g]</th>
+        <th>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @menu.foods.order.each do |food| %>
+          <tr>
+            <td><%= link_to food.slovakname, details_food_path(food) %>     </td>
+            <td><%= number_field_tag "amount", food.menus_foods.find_by_menu_id(@menu).amount,
+                                     name: "filter[#{food.id}]",
+                                         style: "width: 47px;" %></td>
+            <td><%= link_to "×", remove_food_from_menu_path(food, @menu), method: :delete %></td>
+
+          </tr>
+      <% end end %></tbody>
+    </table>
+  </div>
+
+  <div class="span6" style="border-left: 1px solid #c19c6b;">
+    <h2>Celkové výživové hodnoty</h2>
+    <table class="table table-hover">
+
+      <thead>
+      <tr class="info">
+        <th>Názov prvku</th>
+        <th>Jednotka</th>
+        <th>Celkově množstvo</th>
+        <th>Odporúčané množstvo</th>
+        <th>Splnené</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @prvok.each do |prvok| %>
+          <% if !prvok.first[1].first[1].first[1].nil? %>
+              <% a = prvok.first[0]/prvok.first[1].first[1].first[1]*100 %>
+              <% if a > 50 && a < 150 %>
+                  <tr class="success">
+              <% else %>
+                  <tr class="error">
+              <% end %>
+          <% else %>
+              <tr class="warning">
+          <% end %>
+
+          <td><%= link_to prvok.first[1].first[0], elements_path %></td>
+          <td><%= prvok.first[1].first[1].first[0] %></td>
+
+          <td><%= number_with_precision(prvok.first[0], :precision => 2) %></td>
+          <% if !prvok.first[1].first[1].first[1].nil? %>
+              <td><%= prvok.first[1].first[1].first[1] %></td>
+              <td>
+                <%= number_with_precision(a, :precision => 2) + "%" %></td>
+          <% else %>
+              <td>neznáme</td>
+              <td>neznáme</td>
+          <% end %>
+
+          <td class="close" data-dismiss="alert" style="right: 0px;top: -1px; ">×</td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>

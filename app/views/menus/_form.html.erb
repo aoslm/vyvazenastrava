@@ -1,0 +1,38 @@
+<%= form_for(@menu) do |f| %>
+
+    <% if @menu.errors.any? %>
+        <div id="error_explanation">
+          <h2>Vyskytlo sa <%= @menu.errors.count %> chýb, ktoré znemožnili uložiť jedálby lístok:</h2>
+
+          <ul>
+            <% @menu.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <table class="table">
+      <tr>
+        <th colspan="2">
+          <div class="center">Povinné údaje </div>
+        </th>
+      </tr>
+      <tr>
+        <th> <%= f.label "Názov" %> </th>
+        <td><%= f.text_field :name %> </td>
+      </tr>
+
+
+
+    </table>
+
+    <div class="submit">
+      <%= f.submit "Potvrď", class: "btn btn-success btn-large" %>
+    </div>
+
+<% end %>
+
+
+

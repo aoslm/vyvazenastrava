@@ -1,0 +1,12 @@
+<div class="span3 offset1">
+  <div class="tabs-right">
+    <ul class="nav nav-list  nav-tabs">
+      <li class="nav-header">Jedlá</li>
+      <li><%= link_to 'Zobraz jedlá', foods_path, class: "btn-large" %> </li>
+      <li><%= link_to 'Pridaj jedlo', new_food_path, class: "btn-large" %> </li>
+      <li class="nav-header">Recepty</li>
+      <li><%= link_to 'Zobraz recepty', myRecipes_path, class: "btn-large" %> </li>
+      <li><%= link_to 'Pridaj recept', foods_path,:confirm => "Najskôr si vyber jedlo.", class: "btn-large" %> </li>
+    </ul>
+  </div>
+</div>

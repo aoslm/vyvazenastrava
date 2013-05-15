@@ -1,0 +1,23 @@
+<ul class="breadcrumb">
+  <li><%= link_to 'Domov', root_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Profil', profile_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Jedlá',foods_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Recepty',myRecipes_path %> <span class="divider">/</span></li>
+
+  <li class="active">Nový jedálny lístok</li>
+</ul>
+
+<h1>Nový jedálny lístok</h1>
+<div class="row">
+  <%= render('navigation/left') %>
+  <div class="center">
+    <div class="span4">
+      <div class="form-actions">
+        <%= render 'form' %>
+        <%= link_to "Späť", menus_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+  <%= render('navigation/right') %>
+</div>
+

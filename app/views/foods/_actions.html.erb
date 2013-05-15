@@ -1,0 +1,49 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.add').click(function () {
+            $.ajax({
+                url: "<%= add_food_to_menu_path %>",
+                data: {
+                    food_id: this.getAttribute("food_id"),
+                    menu_id: this.getAttribute("menu_id"),
+                    amount: this.parentElement.parentElement.parentElement.parentElement.parentElement.children[2]
+                            .children[0].value
+                },
+                dataType: "script"
+            });
+        });
+    });
+</script>
+
+<%= @foods.count %>
+<% @foods.each do |food| %>
+    <tr>
+
+      <td><h5><%= link_to food.slovakname.truncate(29), details_food_path(food) %> </h5></td>
+      <td><%= food.rank %>x</td>
+
+      <td><%= number_field_tag "amount", 100,
+                               style: "width: 47px;" %> g
+      </td>
+
+      <td>
+        <div class="btn-group">
+          <a class="btn dropdown-toggle btn-primary btn-small" data-toggle="dropdown" href="#">
+            Pridaj do menu
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <% @menus.each do |menu| %>
+                <li><%= link_to menu.name, '#', :remote => true, class: "add", food_id: food.id,
+                                menu_id: menu.id %></li>
+            <% end %>
+
+          </ul>
+        </div>
+      </td>
+      <td><%= link_to "Výživové hodnoty", details_food_path(food), class: "btn btn-primary btn-small" %></td>
+      <td><%= link_to "Recepty", food_recipes_path(food), class: "btn btn-primary btn-small" %></td>
+      <td><%= link_to "Pridaj recept", new_food_recipe_path(food), class: "btn btn-primary btn-small" %></td>
+    </tr>
+
+<% end %>

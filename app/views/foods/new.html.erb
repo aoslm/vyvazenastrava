@@ -1,0 +1,23 @@
+<% provide(:title, "Nové jedlo") %>
+
+<ul class="breadcrumb">
+  <li><%= link_to 'Domov', root_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Profil', profile_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Jedlá',foods_path %> <span class="divider">/</span></li>
+  <li class="active">Pridanie jedla</li>
+</ul>
+
+<h1>Pridanie jedla</h1>
+<div class="row">
+  <%= render('navigation/left') %>
+  <div class="center">
+    <div class="span4">
+      <div class="form-actions">
+        <%= render 'form' %>
+        <%= link_to "Späť", foods_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+  <%= render('navigation/right') %>
+</div>
+

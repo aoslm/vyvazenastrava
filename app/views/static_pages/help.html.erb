@@ -1,0 +1,13 @@
+<% provide(:title, 'FAQ') %>
+<ul class="breadcrumb">
+  <li><%= link_to 'Domov', root_path %> <span class="divider">/</span></li>
+  <li class="active">Časté Otázky</li>
+</ul>
+<div class="page-header"><h1>Časté Otázky</h1></div>
+<h3>Je táto aplikácia bezplatná?</h3>
+<p>
+  Áno, ale prenájom hostingu a domény niečo stojí a preto privítame každú pomoc.
+</p>
+<div class="center">
+  <%= mail_to("truchanpeter@gmail.com", "Pomôcť", class: "btn btn-large btn-success") %>
+</div>

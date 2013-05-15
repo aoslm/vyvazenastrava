@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: menus
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer          not null
+#  food_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  name       :string(255)
+#  rank       :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  CreateDate: 2013-03-26
+
+two:
+  CreateDate: 2013-03-26

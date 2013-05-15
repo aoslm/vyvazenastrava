@@ -1,0 +1,89 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#category_select').change(function() {
+            $.ajax({
+                url: "<%= update_types_path %>",
+                data: {
+                    category_id : $('#category_select').val()
+                },
+                dataType: "script"
+            });
+        });
+    });
+
+</script>
+
+<%= form_for(@food) do |f| %>
+
+    <% if @food.errors.any? %>
+        <div id="error_explanation">
+          <h2>Vyskytlo sa <%= @food.errors.count %> chýb, ktoré znemožnili uložiť jedlo:</h2>
+
+          <ul>
+            <% @food.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <table class="table">
+      <tr>
+        <th colspan="2">
+          <div class="center">Povinné údaje</div>
+        </th>
+      </tr>
+      <tr>
+        <th><%= f.label "Názov" %> </th>
+        <td><%= f.text_field :slovakname %>
+        <%#   f.autocomplete_field :slovakname, autocomplete_food_slovakname_foods_path
+        %></td>
+      </tr>
+
+      <tr>
+        <th> <%= f.label "Kategória" %> </th>
+        <td><%= f.collection_select :category_id, Category.all, :id, :description,
+                                    {:prompt => "Vyber kategóriu jedla"} , {:id => 'category_select'} %></td>
+      </tr>
+
+      <tr>
+        <th> <%= f.label "Typ jedla" %>
+          <%#<div class="help-block">Stlač ctrl pre výber viacerých</div>     %>
+        </th>
+        <td> <%# f.collection_select :types, Type.all, :id, :description, {:prompt => "Vyber typ jedla" },
+                                     {:id => 'type_select'}%>
+          <div class="help-block">Stlač ctrl pre výber viacerých</div>
+        <select id="type_select" name="types[]" multiple="multiple"
+                    size="10" style="width: 250px;">
+          <%= options_from_collection_for_select(Type.all, :id, :description) %>
+        </select></td>
+      </tr>
+
+
+      <tr>
+        <th colspan="2">
+          <div class="center">Doplnkové údaje</div>
+        </th>
+      </tr>
+
+      <tr>
+        <th> <%= f.label "Anglický názov" %> </th>
+        <td><%= f.text_field :englishname %> </td>
+      </tr>
+
+      <tr>
+        <th> <%= f.label "Podrobnejší opis" %> </th>
+        <td><%= f.text_area :description, :size => "30x6" %> </td>
+      </tr>
+
+    </table>
+
+    <div class="submit">
+      <%= f.submit "Potvrď", class: "btn btn-success btn-large" %>
+    </div>
+<% end %>
+
+<div class="obsah"></div>
+
+
+

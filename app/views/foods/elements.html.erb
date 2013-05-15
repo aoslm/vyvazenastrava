@@ -1,0 +1,29 @@
+<% provide(:title, "Prvky") %>
+
+<ul class="breadcrumb">
+  <li><%= link_to 'Domov', root_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Profil', profile_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Jedlá',foods_path %> <span class="divider">/</span></li>
+  <li class="active">Prvky</li>
+</ul>
+
+<div class="page-header">
+  <h1>Prvky</h1>
+  <h2>Popis a ich úloha v ľudskom tele</h2>
+</div>
+
+<div class="row">
+  <% @elements.each do |element| %>
+ <div class="span3 offset1" style="min-height: 316px;">
+    <h3><%= element.name.truncate(50) %> </h3><br/>
+   <p><%= element.description.truncate(100) %></p>
+   <b>Obsah meraný v: <%= element.unit %></b>
+
+   <h4>Odporúčaná denná dávka:</h4>
+   <b>Muži: </b><%=element.GDA_man %><br/>
+   <b>Ženy: </b><%=element.GDA_woman %><br/>
+   <b>Deti: </b><%=element.GDA_child %><br/>
+   <br/>
+ </div>
+<% end %>
+</div>

@@ -1,0 +1,48 @@
+<%= form_for([@food,@recipe]) do |f| %>
+
+    <% if @recipe.errors.any? %>
+        <div id="error_explanation">
+          <h2>Vyskytlo sa <%= @recipe.errors.count %> chýb, ktoré znemožnili uložiť recept:</h2>
+
+          <ul>
+            <% @recipe.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <table class="table">
+      <tr><th colspan="2"><div class="center">Povinné údaje</th></tr>
+      <tr>
+        <th> <%= f.label "Názov" %> </th>
+        <td><%= f.text_field :name %> </td>
+      </tr>
+
+      <tr>
+        <th> <%= f.label "Návod" %> </th>
+        <td><%= f.text_area :manual, :size => "30x6" %> </td>
+      </tr>
+
+      <tr>
+        <th> <%= f.label "Cena [€]" %> </th>
+        <td><%= f.number_field :price%> </td>
+      </tr>
+
+      <tr>
+        <th> <%= f.label "Čas prípravy [hod]:[min]" %> </th>
+        <td><%= f.time_select :time %> </td>
+      </tr>
+
+      <tr>
+        <th> <%= f.label "Počet osôb" %> </th>
+        <td><%= f.number_field :people %> </td>
+      </tr>
+
+    </table>
+
+    <div class="submit">
+      <%= f.submit "Potvrď", class: "btn btn-success btn-large" %>
+    </div>
+<% end %>
+

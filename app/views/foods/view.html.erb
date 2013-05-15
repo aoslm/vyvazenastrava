@@ -1,0 +1,38 @@
+<% provide(:title, "Moje jedlá") %>
+
+<h1>Moje jedlá</h1>
+<h2>Jedlá ktoré pridal používateľ <%= @user.username %></h2>
+
+<%= link_to 'Používatelia', users_path %>
+<table style="text-align: left">
+  <tr>
+    <th>Slovenský názov</th>
+    <th>Anglický názov</th>
+    <th>ID</th>
+    <th>User id</th>
+    <th>Voda</th>
+    <th>Typ</th>
+    <th>Kategória</th>
+
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @foods.each do |food| %>
+    <tr>
+      <td><%= food.slovakname %></td>
+      <td><%= food.englishname %></td>
+      <td><%= food.id %></td>
+      <td><%= food.user.username %></td>
+      <td><%= food.compositions.first.elements.first.amount %></td>
+
+      <td><%= food.types.first.name %></td>
+      <td><%= food.types.first.categories.first.name %></td>
+
+
+      <td><%= link_to 'Podrobnosti', view_food_path(food.id) %></td>
+      <td><%= link_to 'Vymaž', delete_food_path(food.id), method: :delete, data: { confirm: "Jedlo #{food.slovakName}
+      bude vymazané. Chcete pokračovať?" } %> </td>
+    </tr>
+<% end %>
+    </table>

@@ -1,0 +1,26 @@
+<% provide(:title,"Štatistiky") %>
+<ul class="breadcrumb">
+  <li><%= link_to 'Domov', root_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Profil', profile_path %> <span class="divider">/</span></li>
+  <li class="active">Štatistiky</li>
+</ul>
+
+
+<div data-spy="scroll" data-target=".nav" id="foods">
+  <div class="page-header"><h1>Štatistiky</h1></div>
+
+  <div class="row center" style="margin: 0px 0px 0px 40px;">
+
+    <% @array.each do |prvok| %>
+        <div class="span2" style="min-height: 280px; border: 1px solid #c19c6b;margin: 2px 2px;padding: 3px;">
+
+          <h2><%= prvok.elements_type.name %></h2>
+
+          <p><b>Surovina: </b><br><%= prvok.composition.food.slovakname %><br><b>Množstvo: </b><br/>
+            <%= prvok.amount.to_s+" " + prvok.elements_type.unit %>
+          </p>
+        </div>
+    <% end %>
+  </div>
+</div>
+</div>

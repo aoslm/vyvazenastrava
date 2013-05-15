@@ -1,0 +1,47 @@
+<% provide(:title, @user.name) %>
+<ul class="breadcrumb">
+  <li><%= link_to 'Domov', root_path %> <span class="divider">/</span></li>
+  <li class="active">Profil</li>
+</ul>
+<div class="page-header"><h1><%= @user.username %></h1></div>
+
+<div class="row">
+  <%= render('navigation/left') %>
+  <div class="span4">
+    <div class="form-actions">
+      <p id="notice"><%= notice %></p>
+       <div class="center">
+        <table style="text-align: left;">
+          <tr>
+            <th>Meno:</th>
+            <td><%= @user.name + ' ' + @user.surname %></td>
+          </tr>
+          <tr>
+            <th>Hodnotenie:</th>
+            <td><%= @user.rank %></td>
+          </tr>
+          <tr>
+            <th>Dátum narodenia:</th>
+            <td><%= @user.dateOfBirth %></td>
+          </tr>
+          <tr>
+            <th>Email:</th>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <th>Pohlavie:</th>
+            <td><%= @user.gender %></td>
+          </tr>
+        </table>
+        <br/>
+        <%= link_to "Uprav", edit_path, class: "btn btn-primary btn-large" %>
+      </div>
+    </div>
+  </div>
+  <%= render('navigation/right') %>
+</div>
+
+
+
+
+

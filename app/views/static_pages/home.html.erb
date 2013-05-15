@@ -1,0 +1,39 @@
+<% provide(:title, 'Domov') %>
+
+<div class="page-header">
+  <h1>Vitajte !</h1>
+</div>
+
+<div class="left">
+  <div class="row">
+    <% if signed_in? %>
+        <%= render 'navigation/left' %>
+    <% else %>
+        <div class="span2 offset2"></div>
+    <% end %>
+    <div class="span4">
+      Vitajte na mojej stránke ktorá Vám pomôže <b>zdravo sa stravovať</b> a vytvárať si <b>vyvážené menu</b> plné
+      <b>vitamínov, minerálov s optimǎlnym množstvom cukrov, tukov a bielkovín.</b><br/><br/>Portál vznikol v
+      rámci
+      predmetu
+      Výskumne orientovaný
+      seminár, Databázové systémy a Bakalársky projekt 0 na Fakulte informatiky a informačných technológií Slovenskej
+      technickej univerzity.
+      <div class="center">
+        <br/> <br/> <br/>
+        <% if !signed_in? %>
+            <%= link_to "Prihlásiť sa", signin_path, class: "btn btn-primary btn-large btn-success" %>
+            <%= link_to "Registrovať sa", new_user_path, class: "btn btn-primary btn-large" %>
+        <% else %>
+            <%= link_to "Profil", profile_path, class: "btn btn-primary btn-large
+              btn-success" %>
+            <%# link_to "Odhlásiť sa", signout_path, method: "delete", class: "btn btn-primary btn-large
+              btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+    <% if signed_in? %>
+        <%= render 'navigation/right' %>
+    <% end %>
+  </div>
+</div>
